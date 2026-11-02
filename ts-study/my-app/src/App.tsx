@@ -1,19 +1,13 @@
 import './App.css'
-import Drink from './components/Drink'
-import Box from './props/Box'
-import Card from './props/Card'
-import Memo from './storage/Memo'
-import Todos from './storage/Todos'
-import Posts from './posts/Posts'
-import PostDetail from './posts/PostDetail.tsx'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import AddPost from './posts/AddPost.tsx'
+import ProductList from './products/ProductList'
+import Header from './layouts/Header'
 
 function App() {
   return (
     <>
     <section className="app">
-      <h2>리액트 기초 문법</h2>
+      {/* <h2>리액트 기초 문법</h2> */}
       {/* <Greet name="도로롱" age={17}></Greet> */}
       {/* <Greet2 name="트럼프" age={58} doClick={doClick}></Greet2> */}
       {/* <InputValue></InputValue> */}
@@ -39,13 +33,13 @@ function App() {
       {/* <Memo></Memo>
       <Todos></Todos> */}
       <BrowserRouter>
+      <Header></Header>
       <Routes>
-        <Route path='/' element={<Posts/>}></Route>
-        <Route path='/posts/:id' element={<PostDetail/>}></Route>
-        <Route path='/posts/add' element={<AddPost/>}></Route>
+        <Route path='/' element={<ProductList/>}></Route>
       </Routes>
       
       </BrowserRouter>
+      {/* <Bank></Bank> */}
     </section>
     </>
   )

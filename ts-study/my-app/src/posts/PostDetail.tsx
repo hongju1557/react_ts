@@ -17,7 +17,7 @@ const PostDetail = () => {
                 const response =
                 await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}`)
                 setPosts(response.data);
-            } catch (error) {
+            } catch {
                 alert("게시글을 가져오는 중 오류가 발생했습니다.")
                 
             }
@@ -33,7 +33,7 @@ const PostDetail = () => {
         <div>
             <h2>게시글 내용</h2>
             <p>번호 : {post.id}</p>
-            <p>작상자 ID : {post.userId}</p>
+            <p>작성자 ID : {post.userId}</p>
             <p>제목 : {post.title}</p>
             <p>내용 : {post.body}</p>
 

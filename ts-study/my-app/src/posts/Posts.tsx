@@ -10,17 +10,17 @@ export interface Post{
 }
 
 const Posts = () => {
-    const [posts, setPosts] = useState<Post[]>();
+    const [posts, setPosts] = useState<Post[]>([]);
 
     //jsonplaceholder에서 데이터 가져오기
     useEffect(()=> {
         const fetchPosts = async () => {
             try {
                 const response =
-                await axios.get("https://jsonplaceholder.typicode.com/posts")
+                await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")
                 setPosts(response.data);
-            } catch (error) {
-                alert("오류 발생")
+            } catch {
+                alert("게시글 목록을 가져오는 중 오류가 발생했습니다.")
             }
         }// 닫기
         fetchPosts(); //호출
@@ -29,10 +29,11 @@ const Posts = () => {
     return(
         <div>
             <h2>게시글 목록</h2>
+            <h4><Link to="/posts/add">글쓰기</Link></h4>
             <ul>
-                {posts?.map(post => (
+                {posts.map(post => (
                     <li key={post.id}>
-                        <Link to={`/posts/${post.id}`}>{post.id}{post.title}</Link>
+                        <Link to={`/posts/${post.id}`}>{post.id}. {post.title}</Link>
                     </li>
                 ))}
             </ul>
