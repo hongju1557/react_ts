@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+// 객체 타입 정의
 export interface Post{
     userId: number;
     id: number;
@@ -12,18 +13,19 @@ export interface Post{
 const Posts = () => {
     const [posts, setPosts] = useState<Post[]>([]);
 
-    //jsonplaceholder에서 데이터 가져오기
-    useEffect(()=> {
+    // jsonplaceholder에서 데이터 가져오기
+    useEffect(() => {
+        // 비동기 처리 - async / await
         const fetchPosts = async () => {
-            try {
-                const response =
-                await axios.get<Post[]>("https://jsonplaceholder.typicode.com/posts")
+            try{
+                const response = 
+                    await axios.get("https://jsonplaceholder.typicode.com/posts");
                 setPosts(response.data);
-            } catch {
-                alert("게시글 목록을 가져오는 중 오류가 발생했습니다.")
+            }catch(error){
+                alert("게시글 목록을 가져오는 중 오류가 발생했습니다.");
             }
-        }// 닫기
-        fetchPosts(); //호출
+        } // 닫기
+        fetchPosts();  //호출
     }, []);
 
     return(
@@ -33,7 +35,7 @@ const Posts = () => {
             <ul>
                 {posts.map(post => (
                     <li key={post.id}>
-                        <Link to={`/posts/${post.id}`}>{post.id}. {post.title}</Link>
+                       <Link to={`/posts/${post.id}`}>{post.id}. {post.title}</Link>
                     </li>
                 ))}
             </ul>
@@ -41,4 +43,4 @@ const Posts = () => {
     )
 }
 
-export default Posts
+export default Posts;

@@ -1,31 +1,36 @@
 import { useReducer, type ReactNode } from "react"
-import { CartContext, type CartAction, type CartItem } from "./CartContext"
+import { CartContext } from "./CartContext"
+import type { CartItem, CartAction } from "./CartContext"
 
 const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
     switch(action.type){
-        case"ADD":{
-            const found = state.find((item)=> item.id === action.product.id);
+        case "ADD": {
+            // 이미 장바구니에 담긴 상품인지 확인
+            // find 메서드를 사용하여 장바구니에서 해당 상품을 찾음
+            const found = state.find((item) => item.id === action.product.id);
             if(found){
-                return state.map((item)=>
-                item.id === action.product.id ? {...item, qty: item.qty + 1}: item)
+                // 이미 장바구니에 담긴 상품이면 수량을 1 증가
+                return state.map((item) => 
+                item.id === action.product.id ? { ...item, qty: item.qty + 1 } : item)
             }
-        return[...state,{...action.product, qty: 1}]
+            // 장바구니에 담기지 않은 상품이면 새로 추가
+            return [...state, {...action.product, qty: 1}]
         }
         case "REMOVE":
+            // 장바구니에서 해당 상품을 제거
             return state.filter((item) => item.id !== action.id);
         default:
             return state;
     }
-
 }
 
 const CartProvider = ({children}: {children: ReactNode}) => {
-    const [cart,dispatch] = useReducer(cartReducer, []);
+    const [cart, dispatch] = useReducer(cartReducer, []);
 
     return(
-        <CartContext.Provider value={{cart, dispatch}}>
-            {children}
-            </CartContext.Provider>
+       <CartContext.Provider value={{cart, dispatch}}>
+        {children}
+       </CartContext.Provider>
     )
 }
 
