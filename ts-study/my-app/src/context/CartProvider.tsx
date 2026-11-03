@@ -27,8 +27,12 @@ const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
 const CartProvider = ({children}: {children: ReactNode}) => {
     const [cart, dispatch] = useReducer(cartReducer, []);
 
+    const totalCount = cart.reduce((sum, item) => sum +item.qty, 0);
+
+    const totalPrice = cart.reduce((sum, item) => sum + (item.qty*item.price),0);
+
     return(
-       <CartContext.Provider value={{cart, dispatch}}>
+       <CartContext.Provider value={{cart, dispatch, totalCount, totalPrice}}>
         {children}
        </CartContext.Provider>
     )

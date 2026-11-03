@@ -24,6 +24,8 @@ export type CartAction =
 interface CartContextType{
     cart: CartItem[],
     dispatch: React.Dispatch<CartAction>,
+    totalCount: number; //총수량
+    totalPrice: number; //총 가격
 }
 
 // Context 생성

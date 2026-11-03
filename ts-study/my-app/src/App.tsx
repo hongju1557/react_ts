@@ -16,6 +16,7 @@ import './App.css'
 import ProductList from './products/ProductList';
 import Header from './layouts/Header';
 import Cart from './products/Cart';
+import CartProvider from './context/CartProvider';
 
 function App() {
 
@@ -27,6 +28,8 @@ function App() {
   return (
     <>
       <section className="app">
+        {/* CartProvider로 감싸면 내부의 컴포넌트는children이 됨 */}
+        <CartProvider>
         <BrowserRouter>
         <Header />
           <Routes>
@@ -34,6 +37,7 @@ function App() {
             <Route path='/cart' element={<Cart />} />
           </Routes>
         </BrowserRouter>
+        </CartProvider>
 
         {/* <Card title="공지사항">
           <p>내일은 TypeScript 시험이 있습니다.</p>
