@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
-import { useCart } from '../context/CartContext';
+import { useCart } from '../context/CartContext'
 
 const Header = () => {
-    const {totalCount} = useCart();
+    const { totalCount } = useCart();
 
     return(
         <header className='header'>

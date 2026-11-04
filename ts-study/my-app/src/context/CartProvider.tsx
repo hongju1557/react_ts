@@ -27,12 +27,21 @@ const cartReducer = (state: CartItem[], action: CartAction): CartItem[] => {
 const CartProvider = ({children}: {children: ReactNode}) => {
     const [cart, dispatch] = useReducer(cartReducer, []);
 
-    const totalCount = cart.reduce((sum, item) => sum +item.qty, 0);
+    // 총 수량 구현
+    // sum = 0,  sum = sum + qty(누적 합계)
+    const totalCount = cart.reduce((sum, item) => sum + item.qty, 0);
 
-    const totalPrice = cart.reduce((sum, item) => sum + (item.qty*item.price),0);
+    // 총 가격(price * qty)
+    const totalPrice = 
+        cart.reduce((sum, item) => sum + (item.price * item.qty), 0)
 
     return(
-       <CartContext.Provider value={{cart, dispatch, totalCount, totalPrice}}>
+       <CartContext.Provider value={{
+            cart, 
+            dispatch, 
+            totalCount, 
+            totalPrice
+         }}>
         {children}
        </CartContext.Provider>
     )

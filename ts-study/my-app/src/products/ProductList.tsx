@@ -9,7 +9,7 @@ const products: Product[] = [
 ]
 
 const ProductList = () => {
-    const {dispatch} = useCart();
+    const { dispatch } = useCart();
 
     return(
         <div>
@@ -18,9 +18,8 @@ const ProductList = () => {
                 {products.map(product => (
                     <li key={product.id}>
                         {product.name} - {product.price.toLocaleString()}원
-                        <button onClick={()=>
-                            dispatch({type: "ADD", product})
-                        }>담기</button>
+                        <button onClick={() => 
+                            dispatch({type: "ADD", product})}>담기</button>
                     </li>
                 ))}
             </ul>

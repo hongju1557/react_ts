@@ -7,17 +7,16 @@ const Cart = () => {
         <div>
             <h2>장바구니</h2>
             <ul>
-                {cart.map(item =>(
-                    <li>
+                {cart.map(item => (
+                    <li key={item.id}>
                         {item.name} x {item.qty},
-                        <span>금액: {item.price*item.qty}</span>
-                        <button onClick={()=> 
-                            dispatch({type:"REMOVE", id: item.id})
-                        }>삭제</button>
+                        <span> 금액: {(item.price * item.qty).toLocaleString()}</span>
+                        <button onClick={() => 
+                            dispatch({type: "REMOVE", id: item.id})}>삭제</button>
                     </li>
                 ))}
             </ul>
-            <p>총역: {totalPrice.toLocaleString()}</p>
+            <p>총액: {totalPrice.toLocaleString()}원 </p>
         </div>
     )
 }

@@ -22,10 +22,10 @@ export type CartAction =
 
 // Context에 담을 값의 타입
 interface CartContextType{
-    cart: CartItem[],
+    cart: CartItem[], //장바구니에 담은 상품
     dispatch: React.Dispatch<CartAction>,
-    totalCount: number; //총수량
-    totalPrice: number; //총 가격
+    totalCount: number;  //총 수량
+    totalPrice: number;  //총 가격
 }
 
 // Context 생성
