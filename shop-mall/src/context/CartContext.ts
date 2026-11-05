@@ -5,6 +5,9 @@ import type { CartItem } from "../types/cart";
 interface CartContextType{
     cartItems: CartItem[]; // 장바구니 목록
     addToCart: (productId: number, qty: number) => void;
+    updateQuantity: (productId: number, qty: number) => void;
+    removeFromCart: (productId: number) => void;
+    clearCart: () => void;
     totalQuantity: number;
     totalPrice: number;
 }
