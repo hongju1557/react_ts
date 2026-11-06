@@ -8,6 +8,8 @@ const Header = () => {
     const {totalQuantity} = useCart();
     const {currentUser, logout} = useUser();
 
+    const isAdmin = currentUser?.role === "admin"
+
     return(
         <header className='header'>
             <h1>
@@ -17,6 +19,8 @@ const Header = () => {
                 <Link to='/'>상품 목록</Link>
                 <Link to='/product/new'>상품 등록</Link>
                 <Link to='/cart'>장바구니({totalQuantity})</Link>
+                {isAdmin &&
+                    <Link to='/adminpage'>관리자 페이지</Link>}
                 {currentUser ? (
                     <>
                         <span>{currentUser.name}님</span>

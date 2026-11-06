@@ -10,6 +10,7 @@ import Cart from './products/Cart'
 import UserProvider from './context/UserProvider'
 import SignUp from './users/SignUp'
 import SignIn from './users/SignIn'
+import AdminPage from './users/AdminPage'
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path='/cart' element={<Cart />} />
                 <Route path='/signup' element={<SignUp />} />
                 <Route path='/signin' element={<SignIn />} />
+                <Route path='/adminpage' element={<AdminPage/>}></Route>
               </Routes>
             </main>
           </BrowserRouter>

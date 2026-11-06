@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { LoginForm } from "../types/user";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 const initialForm: LoginForm = {
@@ -75,6 +75,9 @@ const SignIn = () => {
                     <p className="sign-up_error">{error}</p>}
                 <button type="submit">로그인</button>
             </form>
+            <p className="signup-link">
+                아직 계정이 없으신가요? <Link to='/signup'>회원가입</Link>
+            </p>
         </div>
     )
 }
